@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>PezzaliAPP — PWA Python Template (Pyodide)</title>
+  <meta name="theme-color" content="#0b1022">
+  <meta name="description" content="Template PWA installabile con Python nel browser via Pyodide. 100% GitHub Pages, offline-ready.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    :root{--bg:#0b1022;--ink:#eaf1ff;--muted:#93a4cc;--card:#101739;--line:#1c2550;--cta:#2dd4bf}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);
+      background: radial-gradient(1200px 600px at 50% -20%, #172042, var(--bg));}
+    header{position:sticky;top:0;background:#0e1533cc;backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line);padding:12px}
+    header h1{margin:0;font-size:18px;letter-spacing:.2px}
+    main{max-width:980px;margin:0 auto;padding:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    button{cursor:pointer;border:1px solid var(--line);background:#0f1840;color:var(--ink);
+      border-radius:10px;padding:10px 14px}
+    input{background:#0f1840;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+    .ok{color:#22c55e}.warn{color:#f59e0b}.muted{color:var(--muted)}
+    pre{white-space:pre-wrap;background:#0b1230;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto}
+    footer{padding:24px 16px;color:var(--muted);text-align:center}
+    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 10px;margin:4px 0}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧪 PezzaliAPP — PWA Python (Pyodide)</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="row" style="justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="pill">Installabile • Offline • GitHub Pages</div>
+          <p class="muted">Esegue Python nel browser grazie a <strong>Pyodide</strong>. Nessun server.</p>
+        </div>
+        <button id="btnInstall" hidden>➕ Installa App</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1) Caricamento Pyodide</h2>
+      <p class="muted">Al primo avvio scarica ~15 MB. Poi resta in cache (PWA).</p>
+      <div id="status" class="pill">Stato: inizializzazione…</div>
+      <progress id="prog" max="100" value="0" style="width:100%;height:10px;margin-top:8px"></progress>
+    </section>
+
+    <section class="card">
+      <h2>2) Demo Python ↔️ UI</h2>
+      <div class="row">
+        <input id="val" type="number" value="7" aria-label="Valore">
+        <button id="runPy">Calcola n² in Python</button>
+      </div>
+      <p class="muted">La funzione è definita in <code>main.py</code> e viene eseguita nel browser.</p>
+      <pre id="out" aria-live="polite">Output…</pre>
+    </section>
+
+    <section class="card">
+      <h2>3) Stato PWA</h2>
+      <ul>
+        <li>Service Worker: <span id="swState" class="muted">verifica…</span></li>
+        <li>Cache offline: <span id="cacheInfo" class="muted">n/d</span></li>
+      </ul>
+    </section>
+
+    <footer>
+      <div>MIT © 2025 — pezzaliAPP.com • Template PWA Python-ready</div>
+    </footer>
+  </main>
+
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+</html>
